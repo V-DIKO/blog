@@ -2,7 +2,7 @@
     <li class="nav-item"><a class="nav-link" href="/">首页</a></li>
     @auth
         <li @if (Request::is('admin/post*')) class="nav-item active" @else class="nav-item" @endif>
-            <a class="nav-link" href="/admin/post">文章</a>
+            <a class="nav-link" href="/admin/article">文章</a>
         </li>
         <li @if (Request::is('admin/tag*')) class="nav-item active" @else class="nav-item" @endif>
             <a class="nav-link" href="/admin/tag">标签</a>

@@ -25,11 +25,11 @@ Route::get('/admin',function(){
 });
 
 Route::middleware('auth')->namespace('admin')->group(function(){
-   Route::resource('admin/article','articleController@index');
-   Route::resource('admin/tag','tagController@index');
-   Route::get('admin/upload','uploadController@index');
+   Route::resource('admin/article','ArticleController');
+   Route::resource('admin/tag','TagController',['except'=>'show']);
+   Route::get('admin/upload','UploadController@index');
 });
 
-Route::get('login','Auth.LoginController@loginForm')->name('login');
-Route::post('login','Auth.LoginController@login');
-Route::get('logout','Auth,LoginController@loginout')->name('logout');
+Route::get('login','Auth\LoginController@showLoginForm')->name('login');
+Route::post('login','Auth\LoginController@login');
+Route::get('logout','Auth\LoginController@logout')->name('logout');
