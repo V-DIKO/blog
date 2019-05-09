@@ -27,9 +27,17 @@ Route::get('/admin',function(){
 Route::middleware('auth')->namespace('admin')->group(function(){
    Route::resource('admin/article','ArticleController');
    Route::resource('admin/tag','TagController',['except'=>'show']);
-   Route::get('admin/upload','UploadController@index');
+   Route::get('admin/uploads','UploadsController@index');
+   Route::post('admin/uploads/file', 'UploadsController@uploadFile');
+   Route::delete('admin/uploads/file', 'UploadsController@deleteFile');
+   Route::post('admin/uploads/folder', 'UploadsController@createFolder');
+   Route::delete('admin/uploads/folder', 'UploadsController@deleteFolder');
 });
 
 Route::get('login','Auth\LoginController@showLoginForm')->name('login');
 Route::post('login','Auth\LoginController@login');
 Route::get('logout','Auth\LoginController@logout')->name('logout');
+
+
+
+// 添加如下路由

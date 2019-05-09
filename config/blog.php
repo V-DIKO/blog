@@ -10,4 +10,8 @@
 return [
     'title'=>'VDiko',
     'article_per_page' => 5,
+    'uploads'=>[
+        'storage'=>'public',
+        'webpath'=>'/storage'
+    ]
 ];
