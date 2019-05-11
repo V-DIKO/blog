@@ -17,10 +17,8 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('slug')->unique();
             $table->string('title');
-            $table->string('describe');
             $table->timestamp('publish_at')->nullable();
             $table->text('content');
-            $table->string('pic');
             $table->softDeletes();
             $table->timestamps();
         });
