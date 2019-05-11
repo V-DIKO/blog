@@ -2,10 +2,10 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\Article;
+use App\Models\Articles;
 use Faker\Generator as Faker;
 
-$factory->define(Article::class, function (Faker $faker) {
+$factory->define(Articles::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(mt_rand(3, 10)),
         'describe'=>$faker->sentence(mt_rand(3,10)),

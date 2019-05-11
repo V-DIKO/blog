@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Article;
+use App\Models\Articles;
 class ArticleTableSeeder extends Seeder
 {
     /**
@@ -11,7 +11,7 @@ class ArticleTableSeeder extends Seeder
      */
     public function run()
     {
-        Article::truncate();  // 先清理表数据
-        factory(Article::class, 20)->create();  // 一次填充20篇文章
+        Articles::truncate();  // 先清理表数据
+        factory(Articles::class, 20)->create();  // 一次填充20篇文章
     }
 }
