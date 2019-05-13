@@ -23,7 +23,7 @@ class Articles extends Model
     }
 
     public function tags(){
-        $this->belongsToMany(Tag::class,'articles_tag_pivot');
+      return  $this->belongsToMany(Tag::class,'article_tag_pivot','article_id','tag_id');
     }
 
     public function setUniqueSlug($title,$extra){
@@ -45,7 +45,7 @@ class Articles extends Model
         Tag::addNeededTags($tags);
         if(count($tags)){
             $this->tags()->sync(
-                Tag::whereIn('tag',$tags)->get()->pluck('tag')->all()
+                Tag::whereIn('tag',$tags)->get()->pluck('id')->all()
             );
             return ;
         }
