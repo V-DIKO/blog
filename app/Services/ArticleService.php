@@ -23,7 +23,7 @@ class ArticleService
 
     public function lists(){
         if($this->tag){
-            return $this->tag = tagIndexData($this->tag);
+            return $this->tag = $this->tagIndexData($this->tag);
         }
         return $this->normalIndexData();
     }
@@ -47,16 +47,16 @@ class ArticleService
     }
 
    protected function tagIndexData($tag){
-        $tag = Tags::where('tag',$tag)->fisrtOrfail();
+        $tag = Tag::where('tag',$tag)->firstOrfail();
         $reverse_direction = (bool)$tag->reverse_direction;
 
-        $articles = Article::where('publish_at','<',Carbon::now())
-            ->whereHas(function($q)use($tag){
-                $q->where('tag','=',$tag->tag);
+        $articles = Articles::where('publish_at','<',Carbon::now())
+            ->whereHas('tags', function ($q) use ($tag) {
+                $q->where('tag', '=', $tag->tag);
             })
-            ->where('is_draft',0)
-            ->orderBy('publish_at','desc')
-            ->simplePaginate(config('blog.article_per_page'));
+            ->where('is_draft', 0)
+            ->orderBy('publish_at', $reverse_direction ? 'asc' : 'desc')
+            ->simplePaginate(config('blog.posts_per_page'));
 
         $articles->appends('tag',$tag->tag);
 
@@ -64,7 +64,7 @@ class ArticleService
         return [
             'title' => $tag->title,
             'subtitle' => $tag->subtitle,
-            'posts' => $articles,
+            'articles' => $articles,
             'page_image' => $page_image,
             'tag' => $tag,
             'reverse_direction' => $reverse_direction,

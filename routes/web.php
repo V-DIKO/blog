@@ -41,3 +41,5 @@ Route::get('logout','Auth\LoginController@logout')->name('logout');
 
 
 // 添加如下路由
+Route::get('contact', 'ContactController@showForm');
+Route::post('contact', 'ContactController@sendContactInfo');
