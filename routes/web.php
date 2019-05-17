@@ -24,7 +24,7 @@ Route::get('/admin',function(){
    return redirect('/admin/article');
 });
 
-Route::middleware('auth')->namespace('admin')->group(function(){
+Route::middleware('auth')->namespace('Admin')->group(function(){
    Route::resource('admin/article','ArticleController');
    Route::resource('admin/tag','TagController',['except'=>'show']);
    Route::get('admin/uploads','UploadsController@index');
