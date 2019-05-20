@@ -53,12 +53,12 @@ class Articles extends Model
         $this->tags()->detach();
     }
 
-    public function getPublishDateAttrbute($value){
-        return $this->publish_at = format('Y-m-d');
+    public function getPublishDateAttribute($value){
+        return $this->publish_at -> format('Y-m-d');
     }
 
-    public function getPublishTimeAttrbute($value){
-        return $this->publish_at = format('g:i A');
+    public function getPublishTimeAttribute($value){
+        return $this->publish_at -> format('g:i A');
     }
 
     public function getContentAttrbute($value){

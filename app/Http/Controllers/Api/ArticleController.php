@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Articles;
+use App\Http\Resources\ArticleResource;
 
 class ArticleController extends Controller
 {
@@ -19,7 +20,7 @@ class ArticleController extends Controller
             $item['views'] = rand(1000,9999);
             $item['summary'] = $article->subtitle;
             $item['thumb'] = config('blog.uploads.webpath').'/'.$article->page_image;
-            $item['posted_at'] = $article->publish_at;
+            $item['posted_at'] = $article->publish_at->format('Y-m-d');
             $data[] = $item;
         }
         $response = [
@@ -28,4 +29,11 @@ class ArticleController extends Controller
         ];
         return response()->json($response);
     }
+
+    public function detail($id){
+        $article = Articles::findOrFail($id);
+        return new ArticleResource($article);
+    }
+
+
 }
