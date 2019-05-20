@@ -23,7 +23,7 @@ class ArticleResource extends JsonResource
            'posted_at' => $this->publish_date,
            'content'=>$this->content_html,
            'views'=>rand(10000,99999),
-           'rote'=>rand(100,999)
+           'votes'=>rand(100,999)
        ];
     }
 }
