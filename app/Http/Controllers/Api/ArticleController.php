@@ -21,7 +21,7 @@ class ArticleController extends Controller
             $item['summary'] = $article->subtitle;
             $item['thumb'] = config('blog.uploads.webpath').'/'.$article->page_image;
             $item['posted_at'] = $article->publish_at->format('Y-m-d');
-            $item['content'] = $article->content;
+            $item['content'] = $article->content_html;
             $data[] = $item;
         }
         $response = [
